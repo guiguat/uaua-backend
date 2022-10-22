@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: me.uaua
+testFramework: kotest
+sourceLanguage: kotlin
+buildTool: gradle_kotlin
+features: [annotation-api, app-name, config4k, data, data-r2dbc, github-workflow-azure-container-instance-graalvm, graalvm, gradle, hibernate-validator, http-client, jackson-databind, kotest, kotlin, kotlin-application, kotlin-build, kotlin-extension-functions, logback, micronaut-build, netty-server, openapi, postgres, r2dbc, readme, shade, swagger-ui, test-resources, tracing-opentelemetry-annotations, tracing-opentelemetry-exporter-jaeger, tracing-opentelemetry-exporter-logging, tracing-opentelemetry-http, tracing-opentelemetry-jaeger]
