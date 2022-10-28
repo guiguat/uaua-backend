@@ -2,13 +2,11 @@ package me.uaua
 
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
-import io.micronaut.http.HttpStatus
 
+data class Bode(val hello: String)
 @Controller("/uauaBackend")
 class UauaBackendController {
 
-    @Get(uri="/", produces=["text/plain"])
-    fun index(): String {
-        return "Example Response"
-    }
+    @Get("/")
+    fun index() = Bode("world")
 }
