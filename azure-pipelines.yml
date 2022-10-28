@@ -1,0 +1,35 @@
+# Gradle
+# Build your Java project and run tests with Gradle using a Gradle wrapper script.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Gradle@3
+  inputs:
+    gradleWrapperFile: 'gradlew'
+    tasks: 'build'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'ssh-uaua-vm'
+    sourceFolder: 'build'
+    contents: 'distributions/uaua-backend-0.1.zip'
+    targetFolder: '/home/guiguat'
+    readyTimeout: '20000'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'ssh-uaua-vm'
+    runOptions: 'commands'
+    commands: 'cd /home/guiguat && unzip uaua-backend-0.1.zip && rm -rf uaua-backend-0.1.zip && screen -AmdS backend_app ./uaua-backend-0.1/bin/uaua-backend'
+    readyTimeout: '20000'
