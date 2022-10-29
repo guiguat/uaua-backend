@@ -10,28 +10,29 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Gradle@3
-  inputs:
-    gradleWrapperFile: 'gradlew'
-    tasks: 'build'
-    publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false
-- task: CopyFilesOverSSH@0
-  inputs:
-    sshEndpoint: 'ssh-uaua-vm'
-    sourceFolder: 'build'
-    contents: 'distributions/uaua-backend-0.1.zip'
-    targetFolder: '/home/guiguat'
-    readyTimeout: '20000'
+# - task: Gradle@3
+#   inputs:
+#     gradleWrapperFile: 'gradlew'
+#     tasks: 'build'
+#     publishJUnitResults: true
+#     testResultsFiles: '**/TEST-*.xml'
+#     javaHomeOption: 'JDKVersion'
+#     jdkVersionOption: '1.11'
+#     sonarQubeRunAnalysis: false
+#     spotBugsAnalysis: false
+# - task: CopyFilesOverSSH@0
+#   inputs:
+#     sshEndpoint: 'ssh-uaua-vm'
+#     sourceFolder: 'build'
+#     contents: 'distributions/uaua-backend-0.1.zip'
+#     targetFolder: '/home/guiguat'
+#     readyTimeout: '20000'
 - task: SSH@0
   inputs:
     sshEndpoint: 'ssh-uaua-vm'
     runOptions: 'commands'
-    commands: 'unzip -d /home/guiguat/ /home/guiguat/distributions/uaua-backend-0.1.zip && \
+    commands: 'echo $PATH && \
+               unzip -d /home/guiguat/ /home/guiguat/distributions/uaua-backend-0.1.zip && \
                rm -rf distributions && \
                screen -AmdS backend_app ./uaua-backend-0.1/bin/uaua-backend'
     readyTimeout: '20000'
