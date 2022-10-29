@@ -31,5 +31,7 @@ steps:
   inputs:
     sshEndpoint: 'ssh-uaua-vm'
     runOptions: 'commands'
-    commands: 'cd /home/guiguat && unzip uaua-backend-0.1.zip && rm -rf uaua-backend-0.1.zip && screen -AmdS backend_app ./uaua-backend-0.1/bin/uaua-backend'
+    commands: 'unzip -d /home/guiguat/ /home/guiguat/distribuitions/uaua-backend-0.1.zip && \
+               rm -rf distribuitions && \
+               screen -AmdS backend_app ./uaua-backend-0.1/bin/uaua-backend'
     readyTimeout: '20000'
