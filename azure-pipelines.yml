@@ -52,8 +52,4 @@ stages:
                 targetType: 'inline'
                 script: |
                   echo "Starting deployment script run"
-                  pwd
-                  ls '$(Pipeline.Workspace)/drop'
                   unzip -d /home/guiguat/ '$(Pipeline.Workspace)/drop/build/distributions/uaua-backend-0.1.zip'
-                  /home/guiguat/uaua-backend-0.1/bin/uaua-backend
-          
