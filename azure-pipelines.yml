@@ -52,6 +52,7 @@ stages:
                 script: |
                   echo "Starting deployment script run"
                   pwd
-                  unzip -d /home/guiguat/ '$(Pipeline.Workspace)/build/distributions/uaua-backend-0.1.zip'
+                  ls '$(Pipeline.Workspace)/drop'
+                  unzip -d /home/guiguat/ '$(Pipeline.Workspace)/drop/build/distributions/uaua-backend-0.1.zip'
                   screen -dmS backendapp /home/guiguat/uaua-backend-0.1/bin/uaua-backend
           
