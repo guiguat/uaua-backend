@@ -37,6 +37,7 @@ stages:
       artifact: drop
   - deployment: VMDeploy
     displayName: deploy
+    dependsOn: Build
     environment:
       name: vm
       resourceName: uaua-vm 
