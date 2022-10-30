@@ -55,5 +55,5 @@ stages:
                   pwd
                   ls '$(Pipeline.Workspace)/drop'
                   unzip -d /home/guiguat/ '$(Pipeline.Workspace)/drop/build/distributions/uaua-backend-0.1.zip'
-                  screen -dmS backendapp /home/guiguat/uaua-backend-0.1/bin/uaua-backend
+                  /home/guiguat/uaua-backend-0.1/bin/uaua-backend
           
